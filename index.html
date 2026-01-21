@@ -1,0 +1,147 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Dangers Zone</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="page1" class="screen active">
+        <h1 class="mystery-title">THE DANGERS ZONE</h1>
+        <p class="subtitle">A mystery only one mind can solve.</p>
+        <button class="btn" onclick="nextPage('page2')">CONTINUE</button>
+    </div>
+
+    <div id="page2" class="screen">
+        <div class="case-file">
+            <h2>CONFIDENTIAL CASE FILE</h2>
+            <p style="color: red;">⚠ ACCESS RESTRICTED ⚠</p>
+            <p>Identify yourself to proceed.</p>
+            <input type="text" id="agentName" placeholder="Enter Name">
+            <input type="email" placeholder="Enter Email (Optional)">
+            <button class="btn" onclick="checkIdentity()">OPEN CASE FILE</button>
+        </div>
+    </div>
+
+    <div id="page2-5" class="screen">
+        <div class="sherlock-avatar">🕵️‍♂️</div>
+        <h2 id="welcomeMsg"></h2>
+        <p>You have to solve 5 dangerous mysteries. Are you ready?</p>
+        <button class="btn" onclick="nextPage('page3')">START MISSION</button>
+    </div>
+
+    <div id="page3" class="screen">
+        <div class="case-header">CASE 01: The Silent Fall</div>
+        <div class="image-box">
+            <img src="images/q1.jpg" alt="Crime Scene 1">
+        </div>
+        <p class="story-text">Look carefully at this crime scene.</p>
+        <div class="options">
+            <button class="choice-btn" onclick="checkAnswer(this, false, 'Clue: Look at the wheelchair!the person cannot walk at all')">Suicide</button>
+            <button class="choice-btn" onclick="checkAnswer(this, true)">Murder</button>
+        </div>
+    </div>
+
+    <div id="page4" class="screen">
+        <div class="case-header">CASE 02: The Boiling Pot</div>
+        <div class="image-box">
+             <img src="images/q2.jpeg" alt="Crime Scene 2">
+        </div>
+        <p class="story-text">Is it suicide or a crime?</p>
+        <div class="options">
+            <button class="choice-btn" onclick="checkAnswer(this, false, 'Clue: Why would a suicide victim start cooking?')">Suicide</button>
+            <button class="choice-btn" onclick="checkAnswer(this, true)">It's a Crime</button>
+        </div>
+    </div>
+
+    <div id="page5" class="screen">
+        <div class="case-header">CASE 03: The Fake Doctor</div>
+        <div class="image-box">
+             <img src="images/q3.jpeg" alt="Crime Scene 3">
+        </div>
+        <p class="story-text">Who is the fake doctor?</p>
+        <div class="options">
+            <button class="choice-btn" onclick="checkAnswer(this, false, ' Clue: Man in the middle has a womans ID.Look closely at the ID cards.')">Left Doctor</button>
+            <button class="choice-btn" onclick="checkAnswer(this, true)">Middle Doctor</button>
+            <button class="choice-btn" onclick="checkAnswer(this, false, 'No, check the middle one again.')">Right Doctor</button>
+        </div>
+    </div>
+
+    <div id="page6" class="screen">
+        <div class="case-header">CASE 04: The Artist</div>
+        <div class="image-box">
+             <img src="images/q4.jpeg" alt="Crime Scene 4">
+        </div>
+        <p class="story-text">Who painted it?</p>
+        <div class="options">
+            <button class="choice-btn" onclick="checkAnswer(this, false, 'Clue:he is too short.')">First Man</button>
+            <button class="choice-btn" onclick="checkAnswer(this, false, 'Clue:The man is not holding a chalkt .')">Second Man</button>
+            <button class="choice-btn" onclick="checkAnswer(this, true)">Third Man</button>
+        </div>
+    </div>
+
+    <div id="page7" class="screen">
+        <h2>FINAL LEVEL</h2>
+        <p>Solve this to unlock the payload.</p>
+        <p><strong>Riddle:</strong> I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?</p>
+        <input type="text" id="finalAnswer" placeholder="Type answer...">
+        <button class="btn" onclick="checkFinal()">SUBMIT</button>
+    </div>
+
+    <div id="countdownPage" class="screen">
+        <h1 id="timer">10</h1>
+        <p id="loadingText">Preparing dangerous game...</p>
+    </div>
+
+    <div id="page8" class="screen">
+        <div class="letter-container">
+            <h2>Hey Dibbo...</h2>
+            <p class="typing-text">
+                Today, your birthday reminds me of the days we spent chasing mysteries, asking silly questions, and finding meaning in the smallest things. 
+                Those moments somehow still find me when I least expect them. Time has moved on, but those memories still find me—quietly, warmly, just like our conversations did.
+                <br><br>
+                I miss that curiosity, that excitement. I miss the way we explored the unknown together, not just places or ideas, but life itself... and most of all, I miss you.
+                Even though distance and time stand between us now, the bond we shared remains untouched—alive in memory, honest and real.
+                <br><br>
+                On your birthday, I hope life is kind to you. You’ll always be a special part of my story.
+            </p>
+            <h3>Happy Birthday, Dibbo. 🤍 🎁</h3>
+            <button class="btn open-me" onclick="revealSurprise()">Open me now</button>
+        </div>
+    </div>
+
+    <div id="page9" class="screen">
+        <canvas id="confetti"></canvas>
+        
+        <div class="cake-container">
+            <div class="cake-tier tier-1"></div>
+            <div class="cake-tier tier-2"></div>
+            <div class="cake-tier tier-3"></div>
+            <div class="candle-position c1" onclick="blowCandle(this)"><div class="candle-stick"></div><div class="flame"></div></div>
+            <div class="candle-position c2" onclick="blowCandle(this)"><div class="candle-stick"></div><div class="flame"></div></div>
+            <div class="candle-position c3" onclick="blowCandle(this)"><div class="candle-stick"></div><div class="flame"></div></div>
+            <div class="candle-position c4" onclick="blowCandle(this)"><div class="candle-stick"></div><div class="flame"></div></div>
+            <div class="candle-position c5" onclick="blowCandle(this)"><div class="candle-stick"></div><div class="flame"></div></div>
+        </div>
+        
+        <p>Make a wish and click the candles to blow them out!</p>
+
+        <div class="gift-section">
+            <textarea id="wishBox" placeholder="Write your birthday wish here, I will try to fulfill it..."></textarea>
+            <button class="btn" onclick="saveWish()">Save your Wish</button>
+        </div>
+    </div>
+
+    <div id="page10" class="screen">
+        <h1 class="final-quote">"This is my first time making something like this,<br>so ignore my mistakes and remember,<br>Some mysteries are meant to be solved.<br>Some are meant to be celebrated."</h1>
+        <h2>Happy Birthday, Dibbo. I love you 🖤</h2>
+        <p>— Auntora</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
